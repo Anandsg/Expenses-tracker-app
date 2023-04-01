@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import ExpenseItem from "./components/Expenses/ExpenseItem";
 
 const App = () => {
-  const expenses = [
+  const [expenses, setExpenses] = useState([
     {
       id: "e1",
       title: "Bike insurance",
@@ -14,7 +14,7 @@ const App = () => {
       id: "e2",
       title: "Home loan",
       amount: 749.49,
-      date: new Date(2021, 2, 12),
+      date: new Date(2021, 2, 6),
       location: "HR layout bangalore",
     },
     {
@@ -26,42 +26,36 @@ const App = () => {
     },
     {
       id: "e4",
-      title: "Wife chanrges",
+      title: "Wifi charges",
       amount: 345,
-      date: new Date(2021, 5, 12),
+      date: new Date(2021, 5, 23),
       location: "BSNL internet centre",
     },
-  ];
+  ]);
 
-  // return React.createElement(
-  //   "div",
-  //   null,
-  //   React.createElement("h2", null, "Expenses tracker app"),
-  //   expenses.map((expense) =>
-  //     React.createElement(ExpenseItem, {
-  //       key: expense.id,
-  //       title: expense.title,
-  //       amount: expense.amount,
-  //       date: expense.date,
-  //       location: expense.location,
-  //     })
-  //   )
-  // );
-  
+  const onDeleteExpense = (expenseId) => {
+    setExpenses((prevExpenses) =>
+      prevExpenses.filter((expense) => expense.id !== expenseId)
+    );
+  };
+
   return (
     <div>
       <h2>Expenses tracker app</h2>
       {expenses.map((expense) => (
         <ExpenseItem
           key={expense.id}
+          id={expense.id}
           title={expense.title}
           amount={expense.amount}
           date={expense.date}
           location={expense.location}
+          onDelete={onDeleteExpense}
         />
       ))}
     </div>
   );
-}
+};
 
 export default App;
+
