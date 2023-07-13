@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ExpenseItem from "./components/Expenses/ExpenseItem";
+import NewExpenses from "./components/NewExpenses/NewExpenses";
 
 const App = () => {
   const [expenses, setExpenses] = useState([
@@ -41,7 +42,7 @@ const App = () => {
 
   return (
     <div>
-      <h2>Expenses tracker app</h2>
+      <NewExpenses />
       {expenses.map((expense) => (
         <ExpenseItem
           key={expense.id}
@@ -58,4 +59,3 @@ const App = () => {
 };
 
 export default App;
-
