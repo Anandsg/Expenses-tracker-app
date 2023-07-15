@@ -40,9 +40,13 @@ const App = () => {
     );
   };
 
+  const addExpenseHandler = (expese) => {
+    console.log("in App.js");
+    console.log(expese);
+  };
   return (
     <div>
-      <NewExpenses />
+      <NewExpenses onAddExpese ={addExpenseHandler}/>
       {expenses.map((expense) => (
         <ExpenseItem
           key={expense.id}
