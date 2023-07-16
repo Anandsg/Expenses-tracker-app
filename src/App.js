@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ExpenseItem from "./components/Expenses/ExpenseItem";
+import Expenses from "./components/Expenses/Expenses";
 import NewExpenses from "./components/NewExpenses/NewExpenses";
 
 const DUMMY_EXPENSES = [
@@ -41,26 +41,17 @@ const App = () => {
       return [expense, ...preExpenses];
     });
   };
-  
+
   const onDeleteExpense = (expenseId) => {
     setExpenses((prevExpenses) =>
       prevExpenses.filter((expense) => expense.id !== expenseId)
     );
   };
+
   return (
     <div>
-      <NewExpenses onAddExpese={addExpenseHandler} />
-      {expenses.map((expense) => (
-        <ExpenseItem
-          key={expense.id}
-          id={expense.id}
-          title={expense.title}
-          amount={expense.amount}
-          date={expense.date}
-          location={expense.location}
-          onDelete={onDeleteExpense}
-        />
-      ))}
+      <NewExpenses onAddExpense={addExpenseHandler} />
+      <Expenses items={expenses} onDeleteExpense={onDeleteExpense} />
     </div>
   );
 };
