@@ -3,6 +3,7 @@ import ExpenseItem from "./ExpenseItem";
 import Card from "../UI/Card";
 import "./Expenses.css";
 import ExpensesFilter from "./ExpensesFilter";
+import ExpensesChart from "./ExpensesChart";
 
 const Expenses = (props) => {
   const [filterYear, setFilteredYear] = useState("2020");
@@ -17,7 +18,7 @@ const Expenses = (props) => {
 
   let expensesContent;
   if (filteredExpenses.length === 0) {
-    expensesContent = <p>No expenses found!</p>;
+    expensesContent = <p className="expense-content">No expenses found!</p>;
   } else if (filteredExpenses.length === 1) {
     expensesContent = (
       <div>
@@ -30,7 +31,9 @@ const Expenses = (props) => {
           location={filteredExpenses[0].location}
           onDelete={props.onDeleteExpense}
         />
-        <p>Only one expense is there, add more expenses!</p>
+        <p className="expense-content">
+          Only one expense is there, add more expenses!
+        </p>
       </div>
     );
   } else {
@@ -53,6 +56,7 @@ const Expenses = (props) => {
         selected={filterYear}
         onChangeFilter={filterChangeHandler}
       />
+      <ExpensesChart expenses={filteredExpenses} />
       {expensesContent}
     </Card>
   );
