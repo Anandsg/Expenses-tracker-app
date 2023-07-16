@@ -11,28 +11,51 @@ const Expenses = (props) => {
     setFilteredYear(selectedYear);
   };
 
+  const filteredExpenses = props.items.filter(
+    (expense) => expense.date.getFullYear().toString() === filterYear
+  );
+
+  let expensesContent;
+  if (filteredExpenses.length === 0) {
+    expensesContent = <p>No expenses found!</p>;
+  } else if (filteredExpenses.length === 1) {
+    expensesContent = (
+      <div>
+        <ExpenseItem
+          key={filteredExpenses[0].id}
+          id={filteredExpenses[0].id}
+          title={filteredExpenses[0].title}
+          amount={filteredExpenses[0].amount}
+          date={filteredExpenses[0].date}
+          location={filteredExpenses[0].location}
+          onDelete={props.onDeleteExpense}
+        />
+        <p>Only one expense is there, add more expenses!</p>
+      </div>
+    );
+  } else {
+    expensesContent = filteredExpenses.map((expense) => (
+      <ExpenseItem
+        key={expense.id}
+        id={expense.id}
+        title={expense.title}
+        amount={expense.amount}
+        date={expense.date}
+        location={expense.location}
+        onDelete={props.onDeleteExpense}
+      />
+    ));
+  }
+
   return (
     <Card className="expenses">
       <ExpensesFilter
         selected={filterYear}
         onChangeFilter={filterChangeHandler}
       />
-      {props.items
-        .filter((expense) => expense.date.getFullYear().toString() === filterYear)
-        .map((expense) => (
-          <ExpenseItem
-            key={expense.id}
-            id={expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-            location={expense.location}
-            onDelete={props.onDeleteExpense} // Passed onDeleteExpense here
-          />
-        ))}
+      {expensesContent}
     </Card>
   );
 };
 
 export default Expenses;
-

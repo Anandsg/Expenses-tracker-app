@@ -7,11 +7,6 @@ import "./Expenses.css";
 const ExpenseItem = (props) => {
   // const [title, setTitle] = useState(props.title);
   const [amount, setAmount] = useState(props.amount);
-  // console.log('Expense evaluated')
-  // const clickHandler = () => {
-  //   setTitle("updated");
-  //   console.log(title);
-  // };
 
   const deleteHandler = () => {
     props.onDelete(props.id);
@@ -28,10 +23,14 @@ const ExpenseItem = (props) => {
         <h2>{props.title}</h2>
         <div className="expense-item__price">${amount}</div>
         <div className="expense-item__location">{props.location}</div>
-        <button onClick={changeExpense}>Change expense</button>
+        <button className="expense-item__location" onClick={changeExpense}>
+          Change expense
+        </button>
       </div>
       {/* <button onClick={clickHandler}>Change title</button> */}
-      <button onClick={deleteHandler}>Delete expense</button>
+      <button className="expense-item__location" onClick={deleteHandler}>
+        Delete expense
+      </button>
     </Card>
   );
 };

@@ -8,28 +8,28 @@ const DUMMY_EXPENSES = [
     title: "Bike insurance",
     amount: 54.12,
     date: new Date(2020, 4, 12),
-    location: "BMT insurance Pvt Ltd",
+    location: "BMT Pvt Ltd",
   },
   {
     id: "e2",
     title: "Home loan",
     amount: 749.49,
     date: new Date(2021, 2, 6),
-    location: "HR layout bangalore",
+    location: "HR layout",
   },
   {
     id: "e3",
     title: "Power bill",
     amount: 453.12,
     date: new Date(2021, 2, 28),
-    location: "BESCOM bill centre",
+    location: "BESCOM",
   },
   {
     id: "e4",
     title: "Wifi charges",
     amount: 345,
     date: new Date(2021, 5, 23),
-    location: "BSNL internet centre",
+    location: "BSNL",
   },
 ];
 
